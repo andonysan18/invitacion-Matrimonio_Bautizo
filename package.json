@@ -1,0 +1,15 @@
+{
+  "name": "invitacion-miguel-maria",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Invitación interactiva al matrimonio de Miguel y María y al bautizo de Yael Noé",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview --open"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}
