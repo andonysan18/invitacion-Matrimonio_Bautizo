@@ -1,70 +1,62 @@
-# Invitación · Miguel & María
+# ¡Miguel & María! · Diseño de fiesta
 
-Landing page interactiva al matrimonio de **Miguel Toaquiza y María Pilatasig** y al bautizo de **Yael Noé**.
+Invitación web al matrimonio de **Miguel Toaquiza y María Pilatasig** y al bautizo de **Yael Noé**.
 Sábado 26 de diciembre de 2026 · 18H00 · Parroquia de Chugchilán.
 
-Hecha con HTML, CSS y JavaScript moderno (módulos ES), sin librerías. Vite es opcional y solo sirve para el servidor de desarrollo y para compilar.
+Diseño alegre y colorido, inspirado en las fiestas de la comunidad: papel picado, globos, stickers y movimientos con rebote.
+Hecho con HTML, CSS y JavaScript moderno (módulos ES), sin librerías.
+
+## Interacciones
+- **Portada:** banderines de papel picado que se mecen, globos que se revientan con un toque, nombres que saltan letra por letra y el botón **¡A celebrar!** con cañones de confeti y música.
+- **La pareja:** la foto lanza corazones al tocarla y cuenta cuántos se enviaron.
+- **El bautizo:** burbujas de agua bendita que se revientan, con contador.
+- **Tu boleto:** se arrastra el talón para cortarlo (también con Enter) y aparece "¡Nos vemos ahí!". Lleva el nombre del invitado.
+- **Cuenta regresiva** en burbujas de colores que cambian de forma.
+- **¡Así celebramos!:** el programa por día con tarjetas que entran repartidas.
+- **Tres bandas:** al tocar una suena la música y se mueve su tambor.
+- **Padrinos:** medallas que giran y revelan los nombres.
+- **Mesa de fotos:** polaroids que se arrastran, se mezclan y se amplían con doble toque.
+- **Confirmación:** barra de avance, muñequitos de colores por cada persona y mensaje listo para WhatsApp.
 
 ## Cómo correrla en Visual Studio Code
+**Live Server:** abre la carpeta, instala la extensión Live Server y haz clic derecho en `index.html` › *Open with Live Server*.
 
-### Opción A: Live Server (sin instalar nada)
-1. Abre la carpeta `invitacion-miguel-maria` en VS Code (**Archivo › Abrir carpeta**).
-2. Instala la extensión **Live Server** (VS Code te la sugiere al abrir la carpeta).
-3. Clic derecho en `index.html` › **Open with Live Server**.
-
-> No abras `index.html` con doble clic: los módulos de JavaScript necesitan un servidor, y desde `file://` el navegador los bloquea.
-
-### Opción B: Vite (necesita Node.js 18 o superior)
+**Vite (Node.js 18+):**
 ```bash
 npm install
-npm run dev       # abre http://localhost:5173
-npm run build     # genera la carpeta dist/ lista para publicar
-npm run preview   # prueba la versión compilada
+npm run dev      # http://localhost:5173
+npm run build    # carpeta dist/ lista para publicar
 ```
-
-**Verla en el celular:** con el celular en la misma red wifi, abre la dirección "Network" que muestra la terminal (ej. `http://192.168.1.20:5173`).
+No abras `index.html` con doble clic: los módulos de JavaScript necesitan un servidor.
 
 ## Qué editar
-
 | Qué | Dónde |
 |---|---|
-| Fecha y hora (cuenta regresiva) | `src/config.js` › `FECHA_EVENTO` |
-| Número de WhatsApp de los novios | `src/config.js` › `WHATSAPP_NOVIOS` |
-| Programa por día | `src/config.js` › `PROGRAMA` |
-| Lugares y búsqueda en Google Maps | `src/config.js` › `LUGARES` |
-| Textos de cada sección | `index.html` |
-| Colores y tipografías | `src/styles/main.css` (variables en `:root`) |
-| Fotos y música | `assets/img/` y `assets/audio/` (mismo nombre de archivo) |
+| Fecha, programa, lugares, WhatsApp | `src/config.js` |
+| Textos | `index.html` |
+| Colores y letras | `src/styles/main.css` (variables en `:root`) |
+| Fotos y música | `assets/img/` y `assets/audio/` |
 
-## Invitación con nombre
-Agrega el nombre al final del enlace y el sobre lo muestra:
-```
-https://tu-sitio.com/#Familia-Chicaiza   →   "Invitación para Familia Chicaiza"
-```
+**Invitación con nombre:** agrega `#Familia-Chicaiza` al final del enlace; aparece en la portada y en el boleto.
 
 ## Estructura
 ```
-index.html              Landing con todas las secciones
-src/main.js             Punto de entrada
-src/config.js           Datos editables
+src/main.js            Punto de entrada
+src/config.js          Datos editables
 src/modules/
-  nav.js                Menú fijo, sección activa y menú en celular
-  reveal.js             Aparición suave al hacer scroll
-  hero.js               Portada, nombre del invitado y "Abrir con música"
-  interactions.js       Vela, corazones, agua bendita y tarjetas que giran
-  scratch.js            Rasca y descubre la fecha + cuenta regresiva
-  program.js            Programa por día y lugares
-  gallery.js            Galería deslizable y foto ampliada
-  rsvp.js               Confirmación por pasos y WhatsApp
-  confetti.js, music.js, utils.js
-src/styles/main.css     Estilos (variables de color en :root)
-assets/                 Fotos y música
+  hero.js              Banderines, globos, nombres y botón de fiesta
+  pair.js              Corazones y burbujas
+  ticket.js            Boleto para cortar y cuenta regresiva
+  party.js             Programa, medallas de padrinos y lugares
+  photos.js            Mesa de fotos arrastrables
+  rsvp.js              Confirmación
+  music.js             Música y tarjetas de bandas
+  confetti.js          Confeti y cañones
+  page.js              Menú y apariciones
+  utils.js
 ```
 
-## Publicarla gratis
-- **Netlify Drop:** ejecuta `npm run build` y arrastra la carpeta `dist/` a https://app.netlify.com/drop
-- **GitHub Pages / Vercel:** sube el proyecto; comando de compilación `npm run build`, carpeta de salida `dist`.
-- Sin compilar, también puedes subir la carpeta tal cual a cualquier hosting estático.
+Respeta la opción del sistema "reducir movimiento".
 
 ## Música
 Melodía original compuesta para esta invitación, sin derechos de terceros.
