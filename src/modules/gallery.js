@@ -1,43 +1,22 @@
-// Galería: carril que se arrastra con el mouse o se desliza con el dedo, flechas y foto ampliada
+// Galería con visor: flechas, teclado y deslizar con el dedo
 import { $, $$ } from './utils.js';
 
 export function initGallery() {
-  const rail = $('rail'), lb = $('lightbox'), lbImg = $('lbImg');
-  const step = () => (rail.querySelector('.shot')?.offsetWidth || 300) + 18;
-
-  $('gPrev').addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: 'smooth' }));
-  $('gNext').addEventListener('click', () => rail.scrollBy({ left: step(), behavior: 'smooth' }));
-  rail.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') rail.scrollBy({ left: step(), behavior: 'smooth' });
-    if (e.key === 'ArrowLeft') rail.scrollBy({ left: -step(), behavior: 'smooth' });
-  });
-
-  // Arrastrar con el mouse (en celular ya se desliza solo)
-  let down = false, startX = 0, startScroll = 0, moved = 0;
-  rail.addEventListener('pointerdown', (e) => {
-    if (e.pointerType !== 'mouse') return;
-    down = true; moved = 0; startX = e.clientX; startScroll = rail.scrollLeft;
-  });
-  addEventListener('pointermove', (e) => {
-    if (!down) return;
-    const dx = e.clientX - startX;
-    moved = Math.max(moved, Math.abs(dx));
-    if (moved > 6) rail.classList.add('dragging');
-    rail.scrollLeft = startScroll - dx;
-  });
-  addEventListener('pointerup', () => {
-    if (!down) return;
-    down = false;
-    requestAnimationFrame(() => rail.classList.remove('dragging'));
-  });
-
-  // Foto ampliada
-  $$('.shot', rail).forEach((b) => b.addEventListener('click', () => {
-    if (moved > 6) return; // fue un arrastre, no un clic
-    lbImg.src = b.dataset.full;
-    lbImg.alt = b.querySelector('img').alt;
-    lb.showModal?.();
-  }));
-  $('lbClose').addEventListener('click', () => lb.close());
-  lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
+  const items = $$('.g'), viewer = $('viewer'), vImg = $('vImg'), vCap = $('vCap');
+  const photos = items.map((b) => ({ src: b.querySelector('img').src, alt: b.querySelector('img').alt }));
+  let i = 0;
+  const show = (k) => {
+    i = (k + photos.length) % photos.length;
+    vImg.animate?.([{ opacity: 0, transform: 'scale(.97)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'cubic-bezier(.22,1,.36,1)' });
+    vImg.src = photos[i].src; vImg.alt = photos[i].alt; vCap.textContent = photos[i].alt;
+  };
+  items.forEach((b, k) => b.addEventListener('click', () => { show(k); viewer.showModal?.(); }));
+  $('vPrev').addEventListener('click', () => show(i - 1));
+  $('vNext').addEventListener('click', () => show(i + 1));
+  $('vClose').addEventListener('click', () => viewer.close());
+  viewer.addEventListener('click', (e) => { if (e.target === viewer) viewer.close(); });
+  viewer.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') show(i + 1); if (e.key === 'ArrowLeft') show(i - 1); });
+  let sx = 0;
+  viewer.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+  viewer.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(i + (dx < 0 ? 1 : -1)); });
 }

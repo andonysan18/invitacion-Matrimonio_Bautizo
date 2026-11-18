@@ -3,323 +3,282 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Miguel y María · Matrimonio y Bautizo</title>
-  <meta name="description" content="Invitación al matrimonio de Miguel Toaquiza y María Pilatasig y al bautizo de Yael Noé. Sábado 26 de diciembre de 2026, Parroquia de Chugchilán.">
+  <title>Miguel &amp; María · 26.12.2026</title>
+  <meta name="description" content="Matrimonio de Miguel Toaquiza y María Pilatasig y bautizo de Yael Noé. Sábado 26 de diciembre de 2026, Parroquia de Chugchilán.">
   <meta property="og:title" content="Miguel &amp; María · Matrimonio y Bautizo">
   <meta property="og:description" content="Sábado 26 de diciembre de 2026 · 18H00 · Parroquia de Chugchilán">
   <meta property="og:image" content="assets/img/novios.jpg">
-  <meta name="theme-color" content="#1F4D3F">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23A3285E'/%3E%3Ctext x='32' y='41' font-size='24' text-anchor='middle' fill='%23FBE6EF' font-family='Georgia'%3EM%26amp;M%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0E1320">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E1320'/%3E%3Ctext x='32' y='42' font-size='26' text-anchor='middle' fill='%23C9A96E' font-family='Georgia' font-style='italic'%3EM%C2%B7M%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Manrope:wght@400;500;600&family=Pinyon+Script&display=swap">
   <link rel="stylesheet" href="src/styles/main.css">
 </head>
-<body>
+<body class="is-loading">
   <a class="skip" href="#contenido">Saltar al contenido</a>
 
-  <!-- ===== Menú ===== -->
+  <!-- Intro: monograma que se dibuja -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <svg class="mono" viewBox="0 0 240 120" fill="none">
+      <path class="draw" d="M20 96 L20 24 L58 78 L96 24 L96 96"/>
+      <circle class="dot" cx="120" cy="60" r="3"/>
+      <path class="draw" d="M144 96 L144 24 L182 78 L220 24 L220 96"/>
+    </svg>
+    <p class="loader-count"><span id="loadNum">0</span></p>
+    <div class="curtain top"></div><div class="curtain bottom"></div>
+  </div>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+
   <header class="nav" id="nav">
-    <div class="container nav-in">
-      <a class="logo" href="#inicio" aria-label="Inicio">M<span>&amp;</span>M</a>
-      <nav class="links" id="links" aria-label="Secciones">
-        <a href="#bendicion">Bendición</a>
-        <a href="#celebramos">Celebramos</a>
-        <a href="#fecha">Fecha</a>
-        <a href="#programa">Programa</a>
-        <a href="#lugares">Lugares</a>
-        <a href="#galeria">Galería</a>
-        <a class="btn sm" href="#confirmar">Confirmar</a>
-      </nav>
-      <div class="nav-actions">
-        <button class="icon-btn music" id="music" type="button" aria-label="Reproducir música" aria-pressed="false">
-          <svg class="pl" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
-        </button>
-        <button class="icon-btn burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="links">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-      </div>
+    <a class="brand" href="#inicio" aria-label="Inicio">M<i>·</i>M</a>
+    <nav class="nav-links" id="navLinks" aria-label="Secciones">
+      <a href="#historia">Historia</a>
+      <a href="#capitulos">Capítulos</a>
+      <a href="#programa">Programa</a>
+      <a href="#lugares">Lugares</a>
+      <a href="#galeria">Galería</a>
+    </nav>
+    <div class="nav-right">
+      <button class="sound" id="music" type="button" aria-label="Reproducir música" aria-pressed="false">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="sound-label">Música</span>
+      </button>
+      <button class="pill magnetic" type="button" data-open-rsvp>Confirmar</button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
     </div>
   </header>
 
   <main id="contenido">
-
     <!-- ===== Portada ===== -->
     <section class="hero" id="inicio">
-      <div class="container hero-grid">
-        <div class="hero-txt">
-          <p class="kicker">Matrimonio · Bautizo</p>
-          <p class="guest" id="guestLine">Con mucho cariño, para <strong id="guest">usted y su familia</strong></p>
-          <h1 class="script hero-title">Miguel <span>&amp;</span> María</h1>
-          <p class="hero-sub">Nos casamos y bautizamos a nuestro querido hijo <strong>Yael Noé</strong></p>
-          <div class="hero-date">
-            <span>Sábado</span><b>26</b><span>Dic · 2026</span>
-          </div>
-          <div class="hero-cta">
-            <button class="btn" id="open" type="button">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-              Abrir con música</button>
-            <a class="btn ghost" href="#confirmar">Confirmar asistencia</a>
+      <div class="hero-media" aria-hidden="true"><img src="assets/img/novios.jpg" alt="" width="1200" height="1147"></div>
+      <canvas class="dust" id="dust" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <p class="eyebrow hero-fade">Invitación para <span id="guest">usted y su familia</span></p>
+        <h1 class="hero-title">
+          <span class="line"><span class="split">Miguel</span></span>
+          <span class="line it"><span class="amp">&amp;</span> <span class="split">María</span></span>
+        </h1>
+        <div class="hero-meta hero-fade">
+          <span>Matrimonio</span><span class="sep"></span><span>Bautizo de Yael Noé</span>
+        </div>
+        <p class="hero-date hero-fade"><b>26</b><span>Diciembre<br>2026</span><span class="sep v"></span><span>18H00<br>Chugchilán</span></p>
+      </div>
+      <a class="scroll-cue hero-fade" href="#historia"><span>Desliza</span><i></i></a>
+    </section>
+
+    <!-- ===== Cinta ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Matrimonio</span><b>✦</b><span class="it">Miguel &amp; María</span><b>✦</b><span>Bautizo</span><b>✦</b><span class="it">Yael Noé</span><b>✦</b><span>26 · 12 · 2026</span><b>✦</b>
+        <span>Matrimonio</span><b>✦</b><span class="it">Miguel &amp; María</span><b>✦</b><span>Bautizo</span><b>✦</b><span class="it">Yael Noé</span><b>✦</b><span>26 · 12 · 2026</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ===== Historia / bendición ===== -->
+    <section class="story" id="historia">
+      <div class="wrap story-grid">
+        <div class="story-art">
+          <figure class="mask-reveal" data-reveal>
+            <img src="assets/img/virgen.jpg" alt="Virgen del Quinche con el Niño" width="210" height="290" loading="lazy">
+          </figure>
+          <div class="candle-ui">
+            <button class="hold" id="hold" type="button" aria-describedby="holdHint">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="track" cx="32" cy="32" r="29"/><circle class="fill" id="holdRing" cx="32" cy="32" r="29"/></svg>
+              <span class="flame-ico" aria-hidden="true"></span>
+            </button>
+            <p class="small" id="holdHint">Mantén presionado para encender una vela</p>
           </div>
         </div>
-        <div class="hero-art" aria-hidden="false">
-          <div class="arch-photo">
-            <img src="assets/img/novios.jpg" alt="Miguel y María sonriendo juntos" width="1200" height="1147">
-          </div>
-          <div class="seal-badge" aria-hidden="true">M&amp;M</div>
-          <div class="medal">
-            <img src="assets/img/virgen.jpg" alt="Virgen del Quinche" width="210" height="290">
-          </div>
+        <div>
+          <p class="eyebrow" data-reveal>Con la bendición de Dios</p>
+          <p class="words" id="words">Con la bendición de Dios y el amor de nuestras familias, tenemos el honor de invitar a usted y a su distinguida familia a compartir con nosotros estos momentos tan especiales de fe, amor, unión y alegría.</p>
+          <p class="small story-note" data-reveal>La Virgencita del Quinche nos acompaña: la recibiremos el sábado 26 desde la comunidad de Itualo.</p>
         </div>
       </div>
-      <div class="emb"></div>
+    </section>
+
+    <!-- ===== Capítulos horizontales ===== -->
+    <section class="chapters" id="capitulos" aria-label="Capítulos de la celebración">
+      <div class="chapters-sticky">
+        <div class="chapters-head wrap">
+          <p class="eyebrow">Cuatro capítulos</p>
+          <p class="chap-count" aria-hidden="true"><span id="chapNow">01</span> / 04</p>
+        </div>
+        <div class="chapters-track" id="chapTrack">
+          <article class="chap">
+            <div class="chap-img"><img src="assets/img/novios.jpg" alt="Miguel y María" loading="lazy" style="object-position:50% 22%"></div>
+            <div class="chap-txt">
+              <p class="chap-num">I</p>
+              <p class="eyebrow">El matrimonio</p>
+              <h2 class="display">Miguel <em>&amp;</em> María</h2>
+              <p>Lcdo. Miguel Toaquiza y Lcda. María Pilatasig unen sus vidas ante Dios, rodeados de su familia y su comunidad.</p>
+            </div>
+          </article>
+          <article class="chap">
+            <div class="chap-img"><img src="assets/img/familia.jpg" alt="María, Yael Noé y Miguel" loading="lazy" style="object-position:50% 40%"></div>
+            <div class="chap-txt">
+              <p class="chap-num">II</p>
+              <p class="eyebrow">El bautizo</p>
+              <h2 class="display"><em>Yael Noé</em></h2>
+              <p>Yael Noé Toaquiza Pilatasig, nuestro querido hijo, recibe el sacramento del bautismo en la misma celebración.</p>
+            </div>
+          </article>
+          <article class="chap chap-date">
+            <div class="odo" aria-label="26">
+              <span class="odo-col" data-digit="2"><span>0123456789</span></span><span class="odo-col" data-digit="6"><span>0123456789</span></span>
+            </div>
+            <div class="chap-txt">
+              <p class="chap-num">III</p>
+              <p class="eyebrow">La fecha</p>
+              <h2 class="display">Sábado, <em>diciembre</em> 2026</h2>
+              <p>Santa Misa, matrimonio y bautizo a las 18H00 en la Parroquia de Chugchilán, con la banda de músicos La Selecta.</p>
+              <a class="link-line" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Matrimonio%20y%20Bautizo%20-%20Miguel%20y%20Mar%C3%ADa&amp;dates=20261226T230000Z/20261227T030000Z&amp;details=Santa%20Misa%2C%20matrimonio%20y%20bautizo%20de%20Yael%20No%C3%A9.%20Recepci%C3%B3n%3A%20comunidad%20La%20Moya%2C%20sector%20Moya%20Alta.&amp;location=Parroquia%20de%20Chugchil%C3%A1n">Agregar al calendario</a>
+            </div>
+          </article>
+          <article class="chap chap-god">
+            <div class="god-list">
+              <div class="god"><p class="eyebrow">Padrinos de matrimonio</p><p class="display-s">Sr. Luis Pastuña</p><p class="display-s it">&amp; Sra. Olga Ayala</p></div>
+              <div class="god"><p class="eyebrow">Padrinos de bautizo</p><p class="display-s">Dr. Anthony Bautista</p><p class="display-s it">&amp; Lcda. Zulina Campaña</p></div>
+            </div>
+            <div class="chap-txt">
+              <p class="chap-num">IV</p>
+              <p class="eyebrow">Nos acompañan</p>
+              <h2 class="display">Los <em>padrinos</em></h2>
+              <p>Quienes guiarán este nuevo camino de fe junto a nuestra familia.</p>
+            </div>
+          </article>
+        </div>
+        <div class="chap-bar wrap" aria-hidden="true"><i id="chapBar"></i></div>
+      </div>
     </section>
 
     <!-- ===== Cuenta regresiva ===== -->
-    <section class="countdown" aria-label="Cuenta regresiva">
-      <div class="container cd-in">
-        <p class="kicker light">Faltan</p>
-        <div class="cd">
-          <div><b id="cdD">39</b><small>días</small></div>
-          <div><b id="cdH">00</b><small>horas</small></div>
-          <div><b id="cdM">00</b><small>minutos</small></div>
-          <div><b id="cdS">00</b><small>segundos</small></div>
-        </div>
-        <a class="btn light" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Matrimonio%20y%20Bautizo%20-%20Miguel%20y%20Mar%C3%ADa&amp;dates=20261226T230000Z/20261227T030000Z&amp;details=Santa%20Misa%2C%20matrimonio%20y%20bautizo%20de%20Yael%20No%C3%A9.%20Recepci%C3%B3n%3A%20comunidad%20La%20Moya%2C%20sector%20Moya%20Alta.&amp;location=Parroquia%20de%20Chugchil%C3%A1n">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-          Agregar al calendario</a>
-      </div>
-    </section>
-
-    <!-- ===== Bendición ===== -->
-    <section class="section" id="bendicion">
-      <div class="container two reveal">
-        <div class="center-col">
-          <button class="shrine" id="shrine" type="button" aria-pressed="false" aria-label="Encender una vela a la Virgen">
-            <span class="arch"><img src="assets/img/virgen.jpg" alt="Virgen del Quinche con el Niño" width="210" height="290"></span>
-            <span class="candle"><span class="flame"></span></span>
-          </button>
-          <p class="tap" id="candleTip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3c2 3 4 5 4 8a4 4 0 01-8 0c0-3 2-5 4-8z"/></svg>Toca la imagen para encender una vela</p>
-        </div>
-        <div>
-          <p class="kicker">Con la bendición de Dios</p>
-          <h2 class="h2">Fe, amor, unión y alegría</h2>
-          <p class="lead">Con la bendición de Dios y el amor de nuestras familias, tenemos el honor de invitar a usted y a su distinguida familia a compartir con nosotros estos momentos tan especiales.</p>
-          <p class="lead muted">La Virgencita del Quinche nos acompaña en este camino: la recibiremos el sábado 26 desde la comunidad de Itualo.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Celebramos ===== -->
-    <section class="section tint" id="celebramos">
-      <div class="container">
-        <header class="sec-head reveal">
-          <p class="kicker">Lo que celebramos</p>
-          <h2 class="script big">Dos sacramentos, una familia</h2>
-        </header>
-        <div class="cards2">
-          <article class="feature reveal">
-            <div class="feature-img hearts-zone">
-              <img src="assets/img/novios.jpg" alt="Miguel y María" width="1200" height="1147" loading="lazy" style="object-position:50% 22%">
-              <button class="overlay-btn" id="hearts" type="button" aria-label="Enviar corazones a los novios"></button>
-              <span class="chip-tap"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-8.6C1 9 3 5 6.8 5c2 0 3.4 1.1 5.2 3 1.8-1.9 3.2-3 5.2-3C21 5 23 9 21.3 12.4 19 16.6 12 21 12 21z"/></svg>Toca para enviar cariño</span>
-            </div>
-            <div class="feature-body">
-              <p class="kicker">Matrimonio</p>
-              <h3 class="script">Miguel &amp; María</h3>
-              <p>Lcdo. Miguel Toaquiza y Lcda. María Pilatasig</p>
-            </div>
-          </article>
-          <article class="feature reveal">
-            <div class="feature-img water-zone">
-              <img src="assets/img/familia.jpg" alt="María, Yael Noé y Miguel juntos" width="460" height="585" loading="lazy" style="object-position:50% 40%">
-              <button class="overlay-btn" id="pool" type="button" aria-label="Tocar el agua bendita sobre la foto"></button>
-              <span class="chip-tap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/></svg>Toca como agua bendita</span>
-            </div>
-            <div class="feature-body">
-              <p class="kicker">Bautizo</p>
-              <h3 class="script">Yael Noé</h3>
-              <p>Yael Noé Toaquiza Pilatasig, nuestro querido hijo</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Fecha ===== -->
-    <section class="section" id="fecha">
-      <div class="container two reveal">
-        <div class="center-col">
-          <div class="scratch" id="scratch">
-            <div class="under">
-              <span class="mm">SÁBADO · DICIEMBRE</span><span class="dd">26</span><span class="mm">2026 · 18H00</span><span class="tt">Parroquia de Chugchilán</span>
-            </div>
-            <canvas id="scratchCv" aria-hidden="true"></canvas>
-          </div>
-          <p class="tap" id="scratchTip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 16c3-6 6 2 9-4s6 2 7-2"/></svg>Rasca con el dedo o el mouse</p>
-          <button class="link-btn" type="button" id="reveal">Mostrar sin rascar</button>
-        </div>
-        <div>
-          <p class="kicker">Guarda la fecha</p>
-          <h2 class="h2">Santa Misa, matrimonio y bautizo</h2>
-          <ul class="facts">
-            <li><span>Día</span>Sábado 26 de diciembre de 2026</li>
-            <li><span>Hora</span>18H00</li>
-            <li><span>Lugar</span>Parroquia de Chugchilán</li>
-            <li><span>Música</span>Banda de músicos La Selecta</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Padrinos ===== -->
-    <section class="section tint" id="padrinos">
-      <div class="container">
-        <header class="sec-head reveal">
-          <p class="kicker">Nos acompañan</p>
-          <h2 class="script big">Padrinos</h2>
-          <p class="tap center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 12a8 8 0 0114-5M20 12a8 8 0 01-14 5M18 3v4h-4M6 21v-4h4"/></svg>Toca cada tarjeta para darla vuelta</p>
-        </header>
-        <div class="flips reveal">
-          <button class="flip" type="button" aria-pressed="false"><span class="in">
-            <span class="f"><span class="kicker light">Padrinos de</span><span class="script">Matrimonio</span><svg class="ring" viewBox="0 0 64 36" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="24" cy="18" r="14"/><circle cx="40" cy="18" r="14"/></svg></span>
-            <span class="b"><span class="kicker">Matrimonio</span><span class="nm">Sr. Luis Pastuña</span><span class="amp">&amp;</span><span class="nm">Sra. Olga Ayala</span></span>
-          </span></button>
-          <button class="flip baut" type="button" aria-pressed="false"><span class="in">
-            <span class="f"><span class="kicker light">Padrinos de</span><span class="script">Bautizo</span><svg class="ring" viewBox="0 0 64 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M32 4v28M22 13h20"/></svg></span>
-            <span class="b"><span class="kicker">Bautizo</span><span class="nm">Dr. Anthony Bautista</span><span class="amp">&amp;</span><span class="nm">Lcda. Zulina Campaña</span></span>
-          </span></button>
+    <section class="count" aria-label="Cuenta regresiva">
+      <div class="wrap count-in">
+        <p class="eyebrow">Faltan</p>
+        <div class="flip-row">
+          <div class="unit"><div class="digits" id="cdD">00</div><small>días</small></div>
+          <div class="unit"><div class="digits" id="cdH">00</div><small>horas</small></div>
+          <div class="unit"><div class="digits" id="cdM">00</div><small>minutos</small></div>
+          <div class="unit"><div class="digits" id="cdS">00</div><small>segundos</small></div>
         </div>
       </div>
     </section>
 
     <!-- ===== Programa ===== -->
-    <section class="section" id="programa">
-      <div class="container narrow">
-        <header class="sec-head reveal">
-          <p class="kicker">Tres días de fiesta</p>
-          <h2 class="script big">Programa</h2>
+    <section class="program" id="programa">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow" data-reveal>Tres días de fiesta</p>
+          <h2 class="display big" data-reveal>El <em>programa</em></h2>
         </header>
-        <div class="days reveal" role="tablist" aria-label="Día del programa">
-          <button class="day" role="tab" type="button" data-d="25" aria-selected="false"><b>25</b>Viernes</button>
-          <button class="day" role="tab" type="button" data-d="26" aria-selected="true"><b>26</b>Sábado</button>
-          <button class="day" role="tab" type="button" data-d="27" aria-selected="false"><b>27</b>Domingo</button>
+        <div class="timeline" id="timeline">
+          <div class="tl-line" aria-hidden="true"><i id="tlFill"></i></div>
+          <ol class="tl-list" id="tlList"></ol>
         </div>
-        <div class="events" id="events" role="tabpanel"></div>
       </div>
     </section>
 
     <!-- ===== Lugares ===== -->
-    <section class="section tint" id="lugares">
-      <div class="container">
-        <header class="sec-head reveal">
-          <p class="kicker">Dónde nos vemos</p>
-          <h2 class="script big">Lugares</h2>
+    <section class="places" id="lugares">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow" data-reveal>Dónde nos vemos</p>
+          <h2 class="display big" data-reveal>Los <em>lugares</em></h2>
         </header>
-        <div class="seg reveal" role="tablist" aria-label="Lugar">
-          <button role="tab" type="button" data-p="0" aria-selected="true">Misa</button>
-          <button role="tab" type="button" data-p="1" aria-selected="false">Recepción y prioste</button>
-        </div>
-        <article class="place reveal">
-          <div class="pimg" id="pImg"></div>
-          <div class="pb">
-            <p class="kicker" id="pWhen">Sábado 26 · 18H00</p>
-            <h3 class="script" id="pName">Parroquia de Chugchilán</h3>
-            <p id="pDesc">Santa Misa, matrimonio y bautizo, con la banda de músicos La Selecta.</p>
-            <a class="btn" id="pMap" target="_blank" rel="noopener" href="https://www.google.com/maps">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 21s-6-5.3-6-11a6 6 0 0112 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg>
-              Cómo llegar</a>
-          </div>
-        </article>
+        <div class="place-grid" id="placeGrid"></div>
       </div>
     </section>
 
     <!-- ===== Galería ===== -->
-    <section class="section" id="galeria">
-      <div class="container">
-        <header class="sec-head row reveal">
-          <div><p class="kicker">Nuestra familia</p><h2 class="script big">Galería</h2></div>
-          <div class="arrows">
-            <button class="icon-btn outline" type="button" id="gPrev" aria-label="Fotos anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-            <button class="icon-btn outline" type="button" id="gNext" aria-label="Fotos siguientes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-          </div>
+    <section class="gallery" id="galeria">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow" data-reveal>Nuestra familia</p>
+          <h2 class="display big" data-reveal>Momentos</h2>
         </header>
+        <div class="masonry">
+          <button class="g g-tall" type="button" data-i="0" data-reveal><img src="assets/img/novios.jpg" alt="Miguel y María" loading="lazy" style="object-position:50% 22%"></button>
+          <button class="g" type="button" data-i="1" data-reveal><img src="assets/img/casa.jpg" alt="Miguel y María frente a su casa" loading="lazy" style="object-position:50% 60%"></button>
+          <button class="g g-tall" type="button" data-i="2" data-reveal><img src="assets/img/familia.jpg" alt="Miguel, María y Yael Noé" loading="lazy" style="object-position:50% 40%"></button>
+          <button class="g" type="button" data-i="3" data-reveal><img src="assets/img/flores.jpg" alt="Arreglo de flores blancas" loading="lazy"></button>
+          <button class="g" type="button" data-i="4" data-reveal><img src="assets/img/virgen.jpg" alt="Virgen del Quinche" loading="lazy" style="object-position:50% 10%"></button>
+        </div>
       </div>
-      <div class="rail" id="rail" tabindex="0" aria-label="Galería de fotos, desliza para ver más">
-        <button class="shot" type="button" data-full="assets/img/novios.jpg"><img src="assets/img/novios.jpg" alt="Miguel y María" loading="lazy" style="object-position:50% 22%"><span>Miguel &amp; María</span></button>
-        <button class="shot" type="button" data-full="assets/img/familia.jpg"><img src="assets/img/familia.jpg" alt="Miguel, María y Yael Noé" loading="lazy" style="object-position:50% 40%"><span>Con Yael Noé</span></button>
-        <button class="shot" type="button" data-full="assets/img/casa.jpg"><img src="assets/img/casa.jpg" alt="Miguel y María frente a su casa" loading="lazy" style="object-position:50% 60%"><span>Nuestro hogar</span></button>
-        <button class="shot" type="button" data-full="assets/img/flores.jpg"><img src="assets/img/flores.jpg" alt="Arreglo de flores blancas" loading="lazy"><span>Flores blancas</span></button>
-        <button class="shot" type="button" data-full="assets/img/virgen.jpg"><img src="assets/img/virgen.jpg" alt="Virgen del Quinche" loading="lazy" style="object-position:50% 10%"><span>Virgencita del Quinche</span></button>
-      </div>
-      <dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
-        <img id="lbImg" src="assets/img/novios.jpg" alt="">
-        <button class="icon-btn lb-close" type="button" id="lbClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <dialog class="viewer" id="viewer" aria-label="Foto ampliada">
+        <img id="vImg" src="assets/img/novios.jpg" alt="">
+        <p class="v-cap" id="vCap"></p>
+        <button class="v-btn v-prev" id="vPrev" type="button" aria-label="Foto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="v-btn v-next" id="vNext" type="button" aria-label="Foto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        <button class="v-btn v-close" id="vClose" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       </dialog>
     </section>
 
-    <!-- ===== Confirmación ===== -->
-    <section class="section rsvp" id="confirmar">
-      <div class="container two">
-        <div class="reveal">
-          <p class="kicker light">Confirma tu asistencia</p>
-          <h2 class="script big light-t">¿Nos acompañas?</h2>
-          <p class="lead light-t">Responde en tres pasos y te armamos el mensaje para enviarlo a los novios por WhatsApp.</p>
-          <ol class="step-dots" aria-hidden="true"><li class="on">1</li><li>2</li><li>3</li><li>4</li></ol>
-        </div>
-        <div class="steps reveal">
-          <div class="step on" data-s="1">
-            <p class="q">¿Asistirás el sábado 26?</p>
-            <div class="big-choice">
-              <button class="yes" type="button" data-go="si">Sí, ahí estaré</button>
-              <button type="button" data-go="no">No podré ir</button>
-            </div>
-          </div>
-          <div class="step" data-s="2">
-            <div class="fld"><label for="nm">Tu nombre</label><input id="nm" type="text" autocomplete="name" placeholder="Ej.: Rosa Chicaiza"></div>
-            <div class="fld" id="paxWrap"><span class="lbl" id="paxL">¿Cuántas personas?</span>
-              <div class="stepper" role="group" aria-labelledby="paxL">
-                <button type="button" id="minus" aria-label="Una persona menos">−</button><output id="pax" aria-live="polite">1</output><button type="button" id="plus" aria-label="Una persona más">+</button>
-              </div>
-            </div>
-            <p class="err" id="nmErr" aria-live="polite"></p>
-            <button class="btn light" type="button" id="toStep3">Siguiente</button>
-          </div>
-          <div class="step" data-s="3">
-            <div class="fld"><label for="wish">Un deseo para la familia</label><textarea id="wish" placeholder="Escribe o elige uno"></textarea></div>
-            <div class="wishes">
-              <button type="button">¡Muchas bendiciones!</button>
-              <button type="button">Que Dios los acompañe siempre</button>
-              <button type="button">¡Felicidades a los tres!</button>
-            </div>
-            <button class="btn light" type="button" id="toStep4">Ver mi mensaje</button>
-          </div>
-          <div class="step" data-s="4">
-            <div class="preview" id="preview"></div>
-            <div class="row-btns">
-              <a class="btn light" id="wa" href="https://wa.me/" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"/></svg>
-                Enviar por WhatsApp</a>
-              <button class="btn ghost-light" type="button" id="copy">Copiar mensaje</button>
-            </div>
-            <p class="note" id="copyNote" aria-live="polite"></p>
-            <button class="link-btn light-t" type="button" id="restart">Empezar de nuevo</button>
-          </div>
-        </div>
+    <!-- ===== Llamado a confirmar ===== -->
+    <section class="cta">
+      <div class="wrap cta-in">
+        <p class="eyebrow" data-reveal>Confirma tu asistencia</p>
+        <h2 class="display huge" data-reveal>¿Nos <em>acompañas</em>?</h2>
+        <button class="big-btn magnetic" type="button" data-open-rsvp data-reveal><span>Confirmar asistencia</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
     </section>
   </main>
 
-  <!-- ===== Cierre ===== -->
-  <footer class="closing">
-    <div class="container closing-in reveal">
-      <p class="lead">Será un verdadero honor contar con la presencia de familiares, amigos y toda la comunidad.<br>¡Los esperamos con mucha alegría y cariño!</p>
-      <p class="kicker light">Con cariño</p>
-      <p class="script sign">Miguel Toaquiza y María Pilatasig</p>
-      <a class="btn light" href="#inicio">Volver al inicio</a>
+  <footer class="foot">
+    <div class="foot-media" aria-hidden="true"></div>
+    <div class="wrap foot-in">
+      <p class="small">Será un verdadero honor contar con su presencia. ¡Los esperamos con mucha alegría y cariño!</p>
+      <p class="sign">Miguel Toaquiza y María Pilatasig</p>
+      <a class="link-line" href="#inicio">Volver al inicio</a>
     </div>
   </footer>
+
+  <!-- ===== Confirmación (ventana) ===== -->
+  <dialog class="rsvp" id="rsvp" aria-labelledby="rsvpTitle">
+    <div class="rsvp-in">
+      <button class="v-btn r-close" id="rClose" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <p class="eyebrow">Confirmación</p>
+      <h2 class="display" id="rsvpTitle">Miguel <em>&amp;</em> María</h2>
+      <div class="r-steps" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="step on" data-s="1">
+        <p class="q">¿Asistirás el sábado 26 de diciembre?</p>
+        <div class="choice">
+          <button type="button" class="c-yes" data-go="si"><span>Sí, ahí estaré</span></button>
+          <button type="button" data-go="no"><span>No podré ir</span></button>
+        </div>
+      </div>
+      <div class="step" data-s="2">
+        <label class="fl" for="nm"><span>Tu nombre</span><input id="nm" type="text" autocomplete="name" placeholder="Ej.: Rosa Chicaiza"></label>
+        <div class="fl" id="paxWrap"><span id="paxL">Número de personas</span>
+          <div class="stepper" role="group" aria-labelledby="paxL"><button type="button" id="minus" aria-label="Una persona menos">−</button><output id="pax" aria-live="polite">1</output><button type="button" id="plus" aria-label="Una persona más">+</button></div>
+        </div>
+        <p class="err" id="nmErr" aria-live="polite"></p>
+        <button class="pill solid" type="button" id="toStep3">Continuar</button>
+      </div>
+      <div class="step" data-s="3">
+        <label class="fl" for="wish"><span>Un deseo para la familia</span><textarea id="wish" rows="3" placeholder="Escribe o elige uno"></textarea></label>
+        <div class="chips">
+          <button type="button">¡Muchas bendiciones!</button>
+          <button type="button">Que Dios los acompañe siempre</button>
+          <button type="button">¡Felicidades a los tres!</button>
+        </div>
+        <button class="pill solid" type="button" id="toStep4">Ver mi mensaje</button>
+      </div>
+      <div class="step" data-s="4">
+        <div class="preview" id="preview"></div>
+        <div class="r-actions">
+          <a class="pill solid" id="wa" href="https://wa.me/" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          <button class="pill" type="button" id="copy">Copiar mensaje</button>
+        </div>
+        <p class="note" id="copyNote" aria-live="polite"></p>
+        <button class="link-line" type="button" id="restart">Empezar de nuevo</button>
+      </div>
+    </div>
+  </dialog>
 
   <audio id="audio" src="assets/audio/musica.mp3" loop preload="none"></audio>
   <canvas id="fx" aria-hidden="true"></canvas>
